@@ -42,7 +42,7 @@ h1,h2,h3,.display{font-family:'Unbounded','Manrope',sans-serif;line-height:1.08;
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
 section{position:relative}
-.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;position:relative;z-index:2}
 .eyebrow{
   display:inline-flex;align-items:center;gap:8px;
   font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
@@ -299,11 +299,42 @@ footer{border-top:1px solid var(--panel-brd);padding:70px 0 40px;background:var(
 .reveal.in{opacity:1;transform:none}
 .reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}.reveal.d4{transition-delay:.32s}
 
+/* ===== photo integration ===== */
+.hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
+.hero-bg img{width:100%;height:100%;object-fit:cover;opacity:.30;object-position:center 35%;transform:scale(1.05);animation:slowpan 30s ease-in-out infinite alternate}
+@keyframes slowpan{to{transform:scale(1.15) translateY(-2%)}}
+.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,17,14,.55),rgba(4,17,14,.82) 60%,var(--bg)),radial-gradient(circle at 72% 42%,transparent 20%,rgba(4,17,14,.5))}
+.photo-band{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.photo-band img{width:100%;height:100%;object-fit:cover;opacity:.14}
+.photo-band::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,var(--bg),rgba(4,17,14,.80) 45%,var(--bg))}
+/* bottle reflection */
+.bottle-reflect{position:absolute;left:50%;transform:translateX(-50%) scaleY(-1);bottom:-118px;height:150px;opacity:.22;filter:blur(1px);-webkit-mask-image:linear-gradient(to bottom,rgba(0,0,0,.6),transparent 70%);mask-image:linear-gradient(to bottom,rgba(0,0,0,.6),transparent 70%);pointer-events:none;z-index:2}
+/* water usage layout */
+.water-usage{display:grid;grid-template-columns:.82fr 1.18fr;gap:44px;align-items:center}
+.water-usage .rules{grid-template-columns:1fr;gap:16px}
+.glass-photo{position:relative;border-radius:24px;overflow:hidden;border:1px solid var(--panel-brd);box-shadow:var(--shadow)}
+.glass-photo img{width:100%;display:block;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.glass-photo:hover img{transform:scale(1.06)}
+.glass-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(4,17,14,.55));pointer-events:none}
+.glass-badge{position:absolute;left:20px;bottom:18px;z-index:2;font-family:'Unbounded';font-size:13px;color:var(--mint);letter-spacing:.05em}
+/* beads media in pillar */
+.pillar.media{padding:0;overflow:hidden}
+.pillar.media .media-img{height:150px;overflow:hidden;position:relative}
+.pillar.media .media-img img{width:100%;height:100%;object-fit:cover}
+.pillar.media .media-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,var(--panel))}
+.pillar.media .media-body{padding:26px 30px 34px}
+/* anatomy beads accent */
+.beads-accent{position:relative;border-radius:20px;overflow:hidden;margin-top:22px;border:1px solid var(--panel-brd)}
+.beads-accent img{width:100%;height:150px;object-fit:cover;display:block;transition:transform .8s}
+.beads-accent:hover img{transform:scale(1.08)}
+.beads-accent .cap{position:absolute;left:18px;bottom:14px;font-size:13px;font-weight:700;color:var(--ink);text-shadow:0 2px 8px rgba(0,0,0,.6)}
+.beads-accent::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(4,17,14,.5),transparent 60%)}
+
 /* ===== responsive ===== */
 @media(max-width:960px){
   .nav-links,.nav-phone{display:none}
   .burger{display:flex}
-  .hero-grid,.anatomy,.product,.order-box{grid-template-columns:1fr}
+  .hero-grid,.anatomy,.product,.order-box,.water-usage{grid-template-columns:1fr}
   .hero-visual{height:440px;order:-1}
   .hero-bottle{height:380px}.hero-bottle.black{display:none}
   .pillars,.economy{grid-template-columns:1fr}
@@ -355,6 +386,7 @@ footer{border-top:1px solid var(--panel-brd);padding:70px 0 40px;background:var(
 
 <!-- HERO -->
 <section class="hero" id="top">
+  <div class="hero-bg"><img src="assets/water-hero.jpg" alt=""></div>
   <div class="aura" style="width:600px;height:600px;background:#0f766e;top:-160px;left:-160px"></div>
   <div class="aura" style="width:500px;height:500px;background:#14b8a6;bottom:-200px;right:-120px;opacity:.35"></div>
   <div class="bubbles" id="bubbles"></div>
@@ -382,6 +414,7 @@ footer{border-top:1px solid var(--panel-brd);padding:70px 0 40px;background:var(
         <div class="glow-disc"></div>
         <img src="assets/bottle_black.png" class="hero-bottle black" alt="Бутылка ЭкоЛид чёрная">
         <img src="assets/bottle_green.png" class="hero-bottle" alt="Бутылка-ионизатор ЭкоЛид">
+        <img src="assets/bottle_green.png" class="bottle-reflect" alt="" aria-hidden="true">
         <div class="spec-tag t1"><small>Ионизация</small><b>−500 mV</b></div>
         <div class="spec-tag t2"><small>Объём</small><b>650 мл</b></div>
         <div class="spec-tag t3"><small>Ощелачивание</small><b>pH 9–11</b></div>
@@ -431,6 +464,7 @@ footer{border-top:1px solid var(--panel-brd);padding:70px 0 40px;background:var(
 
 <!-- LIVING WATER -->
 <section class="sec" style="padding-top:0">
+  <div class="photo-band"><img src="assets/droplets.jpg" alt=""></div>
   <div class="aura" style="width:500px;height:500px;background:#0f766e;top:20%;left:-160px;opacity:.3"></div>
   <div class="wrap">
     <div class="sec-head center reveal">
@@ -507,6 +541,7 @@ footer{border-top:1px solid var(--panel-brd);padding:70px 0 40px;background:var(
           <div class="part reveal d3"><div class="num">4</div><div><h4>Контейнер с засыпкой</h4><p>Прочный контейнер с керамическими шариками ORP −250 mV / pH 9–11, 75 г.</p></div></div>
           <div class="part reveal d4"><div class="num">5</div><div><h4>Ремешок</h4><p>Крепкий и удобный ремешок для переноски. Помещается в сумку, рюкзак и крепление велосипеда.</p></div></div>
         </div>
+        <div class="beads-accent reveal"><img src="assets/beads-water.jpg" alt="Керамическая засыпка в воде"><span class="cap">Керамическая засыпка ORP −250 mV · 75 г</span></div>
       </div>
     </div>
   </div>
@@ -542,6 +577,8 @@ footer{border-top:1px solid var(--panel-brd);padding:70px 0 40px;background:var(
       <h2>Какую воду использовать</h2>
       <p>Засыпка «ЭкоЛид» обогащает уже очищенную воду — важно заливать правильную основу.</p>
     </div>
+    <div class="water-usage">
+      <div class="glass-photo reveal"><img src="assets/glass-water.jpg" alt="Чистая вода в стакане"><span class="glass-badge">Очищенная вода</span></div>
     <div class="rules">
       <div class="rule-card ok reveal">
         <h3><span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg></span>Рекомендуется</h3>
@@ -560,6 +597,7 @@ footer{border-top:1px solid var(--panel-brd);padding:70px 0 40px;background:var(
         </ul>
         <p style="color:var(--muted2);font-size:14px;margin-top:16px">Нуждается в предварительной очистке от примесей и микроорганизмов.</p>
       </div>
+    </div>
     </div>
   </div>
 </section>
@@ -581,6 +619,7 @@ footer{border-top:1px solid var(--panel-brd);padding:70px 0 40px;background:var(
 
 <!-- PRODUCT / ORDER SPEC -->
 <section class="sec" id="product">
+  <div class="photo-band"><img src="assets/droplets.jpg" alt=""></div>
   <div class="aura" style="width:560px;height:560px;background:#0f766e;bottom:-160px;left:-160px;opacity:.32"></div>
   <div class="wrap">
     <div class="product">
