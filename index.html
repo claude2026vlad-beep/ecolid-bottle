@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ионизатор воды «ЭкоЛид» — живая вода ORP -250mV / pH 9-11</title>
+<meta name="description" content="Бутылка-ионизатор «ЭкоЛид» с керамической засыпкой: за минуты превращает очищенную воду в «живую» щелочную. ORP до -500 mV, pH 9-11, >40 минералов, ресурс 1500-2000 л.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#04110e;
+  --bg2:#071b16;
+  --panel:rgba(255,255,255,.04);
+  --panel-brd:rgba(94,234,212,.14);
+  --teal:#14b8a6;
+  --teal-bright:#2dd4bf;
+  --mint:#5eead4;
+  --aqua:#7ff0e6;
+  --emerald:#0f766e;
+  --ink:#eafffb;
+  --muted:#9fc7bf;
+  --muted2:#6f9a92;
+  --danger:#ff6b6b;
+  --radius:22px;
+  --maxw:1180px;
+  --shadow:0 30px 80px -30px rgba(0,0,0,.7);
+  --grad:linear-gradient(135deg,#2dd4bf 0%,#14b8a6 45%,#0d9488 100%);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Manrope',system-ui,sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.6;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,.display{font-family:'Unbounded','Manrope',sans-serif;line-height:1.08;font-weight:700;letter-spacing:-.02em}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+section{position:relative}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--mint);
+  padding:8px 16px;border:1px solid var(--panel-brd);border-radius:100px;
+  background:var(--panel);backdrop-filter:blur(6px);
+}
+.eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--mint);box-shadow:0 0 12px var(--mint)}
+.grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+
+/* ===== buttons ===== */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  font-family:'Manrope';font-weight:700;font-size:16px;
+  padding:16px 30px;border-radius:100px;border:none;cursor:pointer;
+  transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s,background .3s;
+  white-space:nowrap;
+}
+.btn-primary{
+  background:var(--grad);color:#032019;
+  box-shadow:0 12px 40px -12px rgba(45,212,191,.7);
+}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 20px 50px -14px rgba(45,212,191,.9)}
+.btn-ghost{background:var(--panel);color:var(--ink);border:1px solid var(--panel-brd)}
+.btn-ghost:hover{background:rgba(94,234,212,.1);transform:translateY(-3px)}
+
+/* ===== background water fx ===== */
+.aura{position:absolute;border-radius:50%;filter:blur(90px);opacity:.5;z-index:0;pointer-events:none}
+
+/* ===== nav ===== */
+header{position:fixed;top:0;left:0;right:0;z-index:100;transition:.4s}
+.nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 24px;max-width:var(--maxw);margin:0 auto;
+}
+header.scrolled{background:rgba(4,17,14,.72);backdrop-filter:blur(16px);border-bottom:1px solid var(--panel-brd)}
+.logo{display:flex;align-items:center;gap:10px;font-family:'Unbounded';font-weight:700;font-size:20px}
+.logo .drop{width:30px;height:30px;border-radius:50% 50% 50% 0;background:var(--grad);transform:rotate(45deg);box-shadow:0 0 20px rgba(45,212,191,.6);flex:none}
+.nav-links{display:flex;gap:32px;font-weight:600;font-size:15px}
+.nav-links a{color:var(--muted);transition:.25s;position:relative}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;background:var(--mint);transition:.3s}
+.nav-links a:hover::after{width:100%}
+.nav-cta{display:flex;align-items:center;gap:18px}
+.nav-phone{font-weight:700;color:var(--ink);font-size:15px}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px}
+.burger span{width:24px;height:2px;background:var(--ink);border-radius:2px;transition:.3s}
+
+/* ===== hero ===== */
+.hero{min-height:100vh;display:flex;align-items:center;padding:120px 0 60px;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;position:relative;z-index:2}
+.hero h1{font-size:clamp(38px,5.6vw,74px)}
+.hero .sub{font-size:clamp(17px,2vw,20px);color:var(--muted);margin:26px 0 34px;max-width:520px}
+.hero-badges{display:flex;gap:14px;margin-top:26px;flex-wrap:wrap}
+.mini-stat{
+  background:var(--panel);border:1px solid var(--panel-brd);border-radius:16px;
+  padding:14px 18px;backdrop-filter:blur(8px);
+}
+.mini-stat b{font-family:'Unbounded';font-size:22px;display:block;color:var(--mint)}
+.mini-stat span{font-size:12.5px;color:var(--muted2);text-transform:uppercase;letter-spacing:.08em}
+.hero-cta{display:flex;gap:16px;flex-wrap:wrap}
+
+.hero-visual{position:relative;display:flex;justify-content:center;align-items:center;height:560px}
+.ring{position:absolute;border-radius:50%;border:1px solid rgba(94,234,212,.18)}
+.ring.r1{width:440px;height:440px;animation:spin 40s linear infinite}
+.ring.r2{width:340px;height:340px;border-style:dashed;border-color:rgba(94,234,212,.25);animation:spin 26s linear infinite reverse}
+.ring.r3{width:540px;height:540px;border-color:rgba(94,234,212,.1)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.glow-disc{position:absolute;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(45,212,191,.35),transparent 68%);filter:blur(10px)}
+.hero-bottle{position:relative;z-index:3;height:500px;filter:drop-shadow(0 40px 60px rgba(0,0,0,.6));animation:float 6s ease-in-out infinite}
+.hero-bottle.black{height:420px;position:absolute;left:calc(50% - 210px);bottom:20px;z-index:2;animation:float 6s ease-in-out infinite .8s;filter:drop-shadow(0 30px 40px rgba(0,0,0,.55))}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-22px)}}
+.spec-tag{
+  position:absolute;z-index:4;background:rgba(4,17,14,.7);border:1px solid var(--panel-brd);
+  backdrop-filter:blur(10px);border-radius:14px;padding:10px 14px;font-size:13px;font-weight:700;
+  box-shadow:var(--shadow);opacity:0;animation:tagIn .6s ease forwards;
+}
+.spec-tag small{display:block;color:var(--muted2);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.08em}
+.spec-tag b{color:var(--mint);font-family:'Unbounded';font-size:16px}
+.spec-tag.t1{top:60px;right:0;animation-delay:.9s}
+.spec-tag.t2{top:250px;right:-14px;animation-delay:1.2s}
+.spec-tag.t3{bottom:70px;left:0;animation-delay:1.5s}
+@keyframes tagIn{to{opacity:1;transform:translateY(0)}}
+
+/* bubbles */
+.bubbles{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+.bubble{position:absolute;bottom:-40px;border-radius:50%;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.5),rgba(94,234,212,.15));animation:rise linear infinite}
+@keyframes rise{0%{transform:translateY(0) scale(.6);opacity:0}10%{opacity:.7}100%{transform:translateY(-92vh) scale(1);opacity:0}}
+
+/* ===== marquee ===== */
+.marquee{border-top:1px solid var(--panel-brd);border-bottom:1px solid var(--panel-brd);padding:20px 0;overflow:hidden;background:rgba(255,255,255,.015)}
+.marquee-track{display:flex;gap:56px;width:max-content;animation:scrollx 26s linear infinite}
+.marquee-track span{font-family:'Unbounded';font-size:20px;color:var(--muted2);display:flex;align-items:center;gap:56px;white-space:nowrap}
+.marquee-track span::after{content:"◆";color:var(--teal);font-size:12px}
+@keyframes scrollx{to{transform:translateX(-50%)}}
+
+/* ===== section heading ===== */
+.sec{padding:110px 0}
+.sec-head{max-width:720px;margin-bottom:56px}
+.sec-head h2{font-size:clamp(30px,4vw,50px);margin:20px 0 16px}
+.sec-head p{color:var(--muted);font-size:18px}
+.center{margin-left:auto;margin-right:auto;text-align:center}
+
+/* ===== pillars ===== */
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.pillar{
+  background:var(--panel);border:1px solid var(--panel-brd);border-radius:var(--radius);
+  padding:38px 30px;position:relative;overflow:hidden;transition:.35s;
+}
+.pillar::before{content:"";position:absolute;inset:0;background:var(--grad);opacity:0;transition:.35s;z-index:-1}
+.pillar:hover{transform:translateY(-8px);border-color:transparent}
+.pillar:hover::before{opacity:.12}
+.pillar .ic{width:64px;height:64px;border-radius:18px;background:rgba(45,212,191,.12);display:grid;place-items:center;margin-bottom:22px;border:1px solid var(--panel-brd)}
+.pillar .ic svg{width:32px;height:32px;stroke:var(--mint)}
+.pillar h3{font-size:23px;margin-bottom:6px}
+.pillar .val{font-family:'Unbounded';font-size:19px;color:var(--mint);margin-bottom:12px}
+.pillar p{color:var(--muted);font-size:15px}
+
+/* ===== living water ===== */
+.compare2{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:20px}
+.water-card{border-radius:var(--radius);padding:36px;position:relative;overflow:hidden;border:1px solid var(--panel-brd)}
+.water-card.live{background:linear-gradient(160deg,rgba(20,184,166,.16),rgba(20,184,166,.03))}
+.water-card.dead{background:linear-gradient(160deg,rgba(255,107,107,.1),rgba(255,107,107,.02))}
+.water-card .tag{font-family:'Unbounded';font-size:14px;letter-spacing:.1em;text-transform:uppercase}
+.water-card.live .tag{color:var(--mint)}
+.water-card.dead .tag{color:var(--danger)}
+.water-card h3{font-size:30px;margin:12px 0}
+.water-card .orp{font-family:'Unbounded';font-size:40px;margin:16px 0}
+.water-card.live .orp{color:var(--mint)}
+.water-card.dead .orp{color:var(--danger)}
+.water-card ul{list-style:none;margin-top:16px}
+.water-card li{padding:7px 0 7px 26px;position:relative;color:var(--muted);font-size:15px}
+.water-card li::before{content:"";position:absolute;left:0;top:14px;width:8px;height:8px;border-radius:50%}
+.water-card.live li::before{background:var(--mint)}
+.water-card.dead li::before{background:var(--danger)}
+
+/* ===== benefits grid ===== */
+.benefits{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.benefit{
+  background:var(--panel);border:1px solid var(--panel-brd);border-radius:18px;padding:24px 22px;transition:.3s;
+}
+.benefit:hover{background:rgba(94,234,212,.07);transform:translateY(-5px)}
+.benefit .bi{width:46px;height:46px;border-radius:12px;background:rgba(45,212,191,.12);display:grid;place-items:center;margin-bottom:14px}
+.benefit .bi svg{width:24px;height:24px;stroke:var(--mint)}
+.benefit h4{font-family:'Manrope';font-weight:700;font-size:16px;margin-bottom:6px}
+.benefit p{color:var(--muted2);font-size:13.5px;line-height:1.5}
+
+/* ===== anatomy ===== */
+.anatomy{display:grid;grid-template-columns:.9fr 1.1fr;gap:50px;align-items:center}
+.anatomy-visual{position:relative;display:flex;justify-content:center;padding:20px 0}
+.anatomy-visual img{height:520px;filter:drop-shadow(0 40px 50px rgba(0,0,0,.55))}
+.anatomy-visual .glow-disc{width:300px;height:300px;top:50%;left:50%;transform:translate(-50%,-50%)}
+.parts{display:flex;flex-direction:column;gap:14px}
+.part{
+  display:flex;gap:18px;align-items:flex-start;padding:18px 20px;border-radius:16px;
+  background:var(--panel);border:1px solid var(--panel-brd);transition:.3s;
+}
+.part:hover{background:rgba(94,234,212,.07);transform:translateX(6px)}
+.part .num{font-family:'Unbounded';font-size:15px;color:#032019;background:var(--grad);width:34px;height:34px;border-radius:10px;display:grid;place-items:center;flex:none}
+.part h4{font-size:17px;margin-bottom:3px}
+.part p{color:var(--muted);font-size:14px}
+
+/* ===== compare table ===== */
+.tblwrap{overflow-x:auto;border-radius:var(--radius);border:1px solid var(--panel-brd)}
+table.cmp{width:100%;border-collapse:collapse;min-width:640px;background:var(--panel)}
+table.cmp th,table.cmp td{padding:20px 22px;text-align:left;border-bottom:1px solid rgba(255,255,255,.06)}
+table.cmp thead th{font-family:'Unbounded';font-size:15px;background:rgba(255,255,255,.02)}
+table.cmp thead th:nth-child(2){color:var(--mint)}
+table.cmp thead th:nth-child(3){color:var(--muted2)}
+table.cmp td:first-child{color:var(--muted);font-weight:600}
+table.cmp td.good{color:var(--mint);font-weight:700;font-family:'Unbounded';font-size:15px}
+table.cmp td.bad{color:var(--muted2)}
+table.cmp tr:last-child td{border-bottom:none}
+
+/* ===== water rules ===== */
+.rules{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.rule-card{border-radius:var(--radius);padding:34px;border:1px solid var(--panel-brd)}
+.rule-card.ok{background:linear-gradient(160deg,rgba(20,184,166,.14),transparent)}
+.rule-card.no{background:linear-gradient(160deg,rgba(255,107,107,.09),transparent)}
+.rule-card h3{display:flex;align-items:center;gap:12px;font-size:22px;margin-bottom:20px}
+.rule-card .badge{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;flex:none}
+.rule-card.ok .badge{background:rgba(45,212,191,.16)}
+.rule-card.no .badge{background:rgba(255,107,107,.16)}
+.rule-card .badge svg{width:22px;height:22px}
+.rule-card.ok .badge svg{stroke:var(--mint)}
+.rule-card.no .badge svg{stroke:var(--danger)}
+.rule-card ul{list-style:none}
+.rule-card li{padding:11px 0;border-bottom:1px dashed rgba(255,255,255,.08);color:var(--muted);font-size:15.5px}
+.rule-card li:last-child{border:none}
+
+/* ===== economy ===== */
+.economy{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.eco-card{background:var(--panel);border:1px solid var(--panel-brd);border-radius:var(--radius);padding:36px 30px;text-align:center}
+.eco-card .big{font-family:'Unbounded';font-size:52px;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+.eco-card .lbl{color:var(--muted);margin-top:12px;font-size:15px}
+
+/* ===== product spec / order ===== */
+.product{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.product-visual{position:relative;display:flex;justify-content:center;align-items:flex-end;gap:0;height:520px}
+.product-visual .glow-disc{width:340px;height:340px;top:46%;left:50%;transform:translate(-50%,-50%)}
+.product-visual img{filter:drop-shadow(0 30px 50px rgba(0,0,0,.6));position:relative;z-index:2}
+.product-visual .pg{height:470px}
+.product-visual .pb{height:400px;margin-right:-60px;z-index:1;opacity:.95}
+.product-visual .pc{height:230px;margin-left:-30px;margin-bottom:30px}
+.spec-list{list-style:none;margin:26px 0}
+.spec-list li{display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.07);font-size:15.5px}
+.spec-list li span:first-child{color:var(--muted)}
+.spec-list li span:last-child{font-weight:700}
+.price{display:flex;align-items:baseline;gap:14px;margin:24px 0}
+.price .now{font-family:'Unbounded';font-size:48px;color:var(--mint)}
+.price .note{color:var(--muted2);font-size:14px}
+.certs{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.cert{font-size:12px;font-weight:700;letter-spacing:.05em;padding:8px 14px;border:1px solid var(--panel-brd);border-radius:100px;color:var(--muted);background:var(--panel)}
+.colors{display:flex;gap:14px;margin:20px 0}
+.swatch{width:40px;height:40px;border-radius:12px;cursor:pointer;border:2px solid transparent;transition:.2s}
+.swatch:hover,.swatch.active{border-color:var(--mint);transform:scale(1.08)}
+
+/* ===== trust / counters ===== */
+.trust{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center}
+.counter b{font-family:'Unbounded';font-size:clamp(38px,5vw,58px);background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;display:block}
+.counter span{color:var(--muted);font-size:15px}
+
+/* ===== steps ===== */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;counter-reset:st}
+.step{background:var(--panel);border:1px solid var(--panel-brd);border-radius:var(--radius);padding:32px 26px;position:relative;transition:.3s}
+.step:hover{transform:translateY(-6px);border-color:rgba(94,234,212,.3)}
+.step .n{counter-increment:st;font-family:'Unbounded';font-size:44px;color:rgba(94,234,212,.25)}
+.step .n::before{content:counter(st,decimal-leading-zero)}
+.step h4{font-size:19px;margin:8px 0 10px}
+.step p{color:var(--muted);font-size:14.5px}
+
+/* ===== order form ===== */
+.order-box{background:linear-gradient(160deg,rgba(20,184,166,.12),rgba(20,184,166,.02));border:1px solid var(--panel-brd);border-radius:28px;padding:50px;display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center}
+.form-field{margin-bottom:18px}
+.form-field label{display:block;font-size:14px;color:var(--muted);margin-bottom:8px;font-weight:600}
+.form-field input,.form-field select,.form-field textarea{
+  width:100%;padding:15px 18px;border-radius:14px;border:1px solid var(--panel-brd);
+  background:rgba(4,17,14,.5);color:var(--ink);font-family:'Manrope';font-size:15px;transition:.25s;
+}
+.form-field input:focus,.form-field select:focus,.form-field textarea:focus{outline:none;border-color:var(--mint);box-shadow:0 0 0 3px rgba(45,212,191,.15)}
+.form-field select option{background:#04110e}
+.form-note{font-size:13px;color:var(--muted2);margin-top:14px;text-align:center}
+
+/* ===== footer ===== */
+footer{border-top:1px solid var(--panel-brd);padding:70px 0 40px;background:var(--bg2)}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;margin-bottom:44px}
+.foot-grid h4{font-family:'Unbounded';font-size:16px;margin-bottom:18px}
+.foot-grid p,.foot-grid a{color:var(--muted);font-size:15px;display:block;margin-bottom:10px;transition:.2s}
+.foot-grid a:hover{color:var(--mint)}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.06);padding-top:26px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;color:var(--muted2);font-size:14px}
+
+/* ===== reveal animation ===== */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}.reveal.d4{transition-delay:.32s}
+
+/* ===== responsive ===== */
+@media(max-width:960px){
+  .nav-links,.nav-phone{display:none}
+  .burger{display:flex}
+  .hero-grid,.anatomy,.product,.order-box{grid-template-columns:1fr}
+  .hero-visual{height:440px;order:-1}
+  .hero-bottle{height:380px}.hero-bottle.black{display:none}
+  .pillars,.economy{grid-template-columns:1fr}
+  .benefits{grid-template-columns:repeat(2,1fr)}
+  .compare2,.rules,.trust,.steps{grid-template-columns:1fr 1fr}
+  .anatomy-visual{display:none}
+  .product-visual{height:400px}
+  .order-box{padding:32px}
+  .foot-grid{grid-template-columns:1fr}
+  .mobile-menu.open{display:flex}
+}
+@media(max-width:560px){
+  .benefits,.trust,.steps,.compare2,.rules{grid-template-columns:1fr}
+  .sec{padding:76px 0}
+  .order-box{padding:24px}
+  .price .now{font-size:38px}
+}
+.mobile-menu{display:none;position:fixed;top:74px;left:0;right:0;z-index:99;background:rgba(4,17,14,.96);backdrop-filter:blur(16px);flex-direction:column;padding:20px 24px;gap:6px;border-bottom:1px solid var(--panel-brd)}
+.mobile-menu a{padding:14px 0;font-weight:600;color:var(--muted);border-bottom:1px solid rgba(255,255,255,.05)}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header id="hdr">
+  <nav class="nav">
+    <a href="#top" class="logo"><span class="drop"></span>ЭкоЛид</a>
+    <div class="nav-links">
+      <a href="#pillars">Преимущества</a>
+      <a href="#anatomy">Функционал</a>
+      <a href="#compare">Сравнение</a>
+      <a href="#product">Каталог</a>
+      <a href="#order">Контакты</a>
+    </div>
+    <div class="nav-cta">
+      <span class="nav-phone">+38 (096) 520 79 48</span>
+      <a href="#order" class="btn btn-primary" style="padding:12px 24px;font-size:15px">Заказать</a>
+      <div class="burger" id="burger"><span></span><span></span><span></span></div>
+    </div>
+  </nav>
+</header>
+<div class="mobile-menu" id="mmenu">
+  <a href="#pillars">Преимущества</a>
+  <a href="#anatomy">Функционал</a>
+  <a href="#compare">Сравнение</a>
+  <a href="#product">Каталог</a>
+  <a href="#order">Контакты</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="aura" style="width:600px;height:600px;background:#0f766e;top:-160px;left:-160px"></div>
+  <div class="aura" style="width:500px;height:500px;background:#14b8a6;bottom:-200px;right:-120px;opacity:.35"></div>
+  <div class="bubbles" id="bubbles"></div>
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow reveal">Аквамедицина · БРТ-технологии · 12 лет</span>
+        <h1 class="reveal d1">Живая вода <span class="grad-text">в одной бутылке</span></h1>
+        <p class="sub reveal d2">Ионизатор «ЭкоЛид» с керамической засыпкой за считанные минуты превращает обычную очищенную воду в щёлочную «живую» — биологически активную и оптимально полезную для организма.</p>
+        <div class="hero-cta reveal d3">
+          <a href="#order" class="btn btn-primary">Заказать за 79 €</a>
+          <a href="#pillars" class="btn btn-ghost">Как это работает</a>
+        </div>
+        <div class="hero-badges reveal d4">
+          <div class="mini-stat"><b>−250…−500</b><span>ORP, mV</span></div>
+          <div class="mini-stat"><b>9–11</b><span>pH, ед.</span></div>
+          <div class="mini-stat"><b>&gt;40</b><span>минералов</span></div>
+          <div class="mini-stat"><b>1500–2000</b><span>литров ресурс</span></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="ring r3"></div>
+        <div class="ring r1"></div>
+        <div class="ring r2"></div>
+        <div class="glow-disc"></div>
+        <img src="assets/bottle_black.png" class="hero-bottle black" alt="Бутылка ЭкоЛид чёрная">
+        <img src="assets/bottle_green.png" class="hero-bottle" alt="Бутылка-ионизатор ЭкоЛид">
+        <div class="spec-tag t1"><small>Ионизация</small><b>−500 mV</b></div>
+        <div class="spec-tag t2"><small>Объём</small><b>650 мл</b></div>
+        <div class="spec-tag t3"><small>Ощелачивание</small><b>pH 9–11</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span>Антиоксидант</span><span>Живая вода</span><span>&gt;40 минералов</span><span>ORP −500 mV</span><span>pH 9–11</span><span>Ресурс 2000 л</span><span>CE · FDA · EEC</span>
+    <span>Антиоксидант</span><span>Живая вода</span><span>&gt;40 минералов</span><span>ORP −500 mV</span><span>pH 9–11</span><span>Ресурс 2000 л</span><span>CE · FDA · EEC</span>
+  </div>
+</div>
+
+<!-- PILLARS -->
+<section class="sec" id="pillars">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Три главных свойства</span>
+      <h2>Почему «ЭкоЛид» — <span class="grad-text">лучшее решение</span></h2>
+      <p>Уникальная керамическая засыпка обогащает воду по трём направлениям одновременно.</p>
+    </div>
+    <div class="pillars">
+      <div class="pillar reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M13 2 3 14h7l-1 8 10-12h-7z"/></svg></div>
+        <h3>Ионизация</h3>
+        <div class="val">ORP −250…−500 mV</div>
+        <p>Восстанавливает окислительно-восстановительный потенциал воды. Меняет заряд с положительного на отрицательный — вода становится биологически активной, как жидкости здорового организма.</p>
+      </div>
+      <div class="pillar reveal d1">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 2v20M2 12h20M5 5l14 14M19 5 5 19"/></svg></div>
+        <h3>Минерализация</h3>
+        <div class="val">&gt; 40 минералов</div>
+        <p>Наполняет воду оптимальной суточной нормой микро- и макроэлементов с уникальными адсорбционными, коагуляционными и ионообменными свойствами.</p>
+      </div>
+      <div class="pillar reveal d2">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 3c4 5 6 8 6 11a6 6 0 0 1-12 0c0-3 2-6 6-11z"/></svg></div>
+        <h3>Ощелачивание</h3>
+        <div class="val">pH 9–11 ед.</div>
+        <p>Щёлочная вода нейтрализует повышенную кислотность организма, выводит токсины и радионуклиды, оказывает мощное антиоксидантное действие.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIVING WATER -->
+<section class="sec" style="padding-top:0">
+  <div class="aura" style="width:500px;height:500px;background:#0f766e;top:20%;left:-160px;opacity:.3"></div>
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">«Живая» вода</span>
+      <h2>Отрицательный ОВП = сила антиоксиданта</h2>
+      <p>ОВП — способность воды отдавать электроны во всех жидкостных средах организма. У здорового человека он от −7 до −200 mV.</p>
+    </div>
+    <div class="compare2">
+      <div class="water-card live reveal">
+        <div class="tag">Живая вода</div>
+        <h3>Восстановитель</h3>
+        <div class="orp">ОВП «−»</div>
+        <ul>
+          <li>Заряд со знаком «минус» — идеальный антиоксидант</li>
+          <li>pH 9–11 ед., мгновенно усваивается и обводняет клетку</li>
+          <li>Типична для горных источников и талой воды</li>
+          <li>Нормализует окислительно-восстановительный баланс</li>
+        </ul>
+      </div>
+      <div class="water-card dead reveal d1">
+        <div class="tag">«Мёртвая» вода</div>
+        <h3>Окислитель</h3>
+        <div class="orp">ОВП «+»</div>
+        <ul>
+          <li>Заряд со знаком «плюс» — вода-окислитель</li>
+          <li>pH 6–7,5 ед.</li>
+          <li>Обычная бутилированная и водопроводная вода</li>
+          <li>Забирает электроны у клеток организма</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Влияние на организм</span>
+      <h2>Что даёт вода <span class="grad-text">с отрицательным ОВП</span></h2>
+      <p>За счёт восстановительных свойств вода нормализует баланс в организме и тем самым:</p>
+    </div>
+    <div class="benefits">
+      <div class="benefit reveal"><div class="bi"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M13 2 3 14h7l-1 8 10-12h-7z"/></svg></div><h4>Энергия и бодрость</h4><p>Восстанавливает энергетический баланс и придаёт бодрость.</p></div>
+      <div class="benefit reveal d1"><div class="bi"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 21s-7-4.5-9-9a5 5 0 0 1 9-2 5 5 0 0 1 9 2c-2 4.5-9 9-9 9z"/></svg></div><h4>Давление в норме</h4><p>Нормализует кровяное давление и обмен веществ.</p></div>
+      <div class="benefit reveal d2"><div class="bi"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 3a9 9 0 1 0 9 9M12 3v9l6 3"/></svg></div><h4>Иммунитет</h4><p>Восстанавливает и активизирует иммунную систему.</p></div>
+      <div class="benefit reveal d3"><div class="bi"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 22c5-3 8-7 8-12V5l-8-3-8 3v5c0 5 3 9 8 12z"/></svg></div><h4>Антиоксидант</h4><p>Мощные антиоксидантные и антимутагенные свойства.</p></div>
+      <div class="benefit reveal"><div class="bi"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M8 11a4 4 0 1 1 8 0c0 3-4 6-4 6s-4-3-4-6z"/><circle cx="12" cy="11" r="1.3"/></svg></div><h4>ЖКТ и микрофлора</h4><p>Нормализует микрофлору, стимулирует рост бифидобактерий.</p></div>
+      <div class="benefit reveal d1"><div class="bi"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M4 12h4l2 5 4-10 2 5h4"/></svg></div><h4>Заживление</h4><p>Способствует заживлению ран, ожогов и язв.</p></div>
+      <div class="benefit reveal d2"><div class="bi"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 3c3 4 5 7 5 10a5 5 0 0 1-10 0c0-3 2-6 5-10z"/></svg></div><h4>Детокс печени</h4><p>Восстанавливает детоксицирующую функцию печени.</p></div>
+      <div class="benefit reveal d3"><div class="bi"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg></div><h4>Противовирусное</h4><p>Подавляет патогенную флору, вирусы герпеса и гриппа «А».</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ANATOMY -->
+<section class="sec" id="anatomy">
+  <div class="aura" style="width:520px;height:520px;background:#14b8a6;top:10%;right:-180px;opacity:.28"></div>
+  <div class="wrap">
+    <div class="anatomy">
+      <div class="anatomy-visual reveal">
+        <div class="glow-disc"></div>
+        <img src="assets/bottle_green.png" alt="Функциональный дизайн ЭкоЛид">
+      </div>
+      <div>
+        <div class="sec-head reveal" style="margin-bottom:32px">
+          <span class="eyebrow">Функциональный дизайн</span>
+          <h2>Продумано <span class="grad-text">до детали</span></h2>
+        </div>
+        <div class="parts">
+          <div class="part reveal"><div class="num">1</div><div><h4>Кнопка и клипса-предохранитель</h4><p>Быстро открывает крышку и надёжно фиксирует её от случайного открытия и протекания.</p></div></div>
+          <div class="part reveal d1"><div class="num">2</div><div><h4>Пружина и ограничитель</h4><p>Удобное лёгкое открытие и фиксация крышки в одном положении.</p></div></div>
+          <div class="part reveal d2"><div class="num">3</div><div><h4>Уплотнитель и крышка</h4><p>Плотно прилегает к горлышку, обеспечивает герметичность и защиту от пыли.</p></div></div>
+          <div class="part reveal d3"><div class="num">4</div><div><h4>Контейнер с засыпкой</h4><p>Прочный контейнер с керамическими шариками ORP −250 mV / pH 9–11, 75 г.</p></div></div>
+          <div class="part reveal d4"><div class="num">5</div><div><h4>Ремешок</h4><p>Крепкий и удобный ремешок для переноски. Помещается в сумку, рюкзак и крепление велосипеда.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARE TABLE -->
+<section class="sec" id="compare" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Сравнение</span>
+      <h2>Вода с засыпкой «ЭкоЛид» <span class="grad-text">против обычной</span></h2>
+    </div>
+    <div class="tblwrap reveal">
+      <table class="cmp">
+        <thead><tr><th>Показатель</th><th>Вода с засыпкой «ЭкоЛид»</th><th>Обычная фильтрованная</th></tr></thead>
+        <tbody>
+          <tr><td>ORP</td><td class="good">−250…−500 mV</td><td class="bad">+150 mV и выше</td></tr>
+          <tr><td>pH</td><td class="good">9–11 ед.</td><td class="bad">7,0–7,3 ед.</td></tr>
+          <tr><td>Минерализация</td><td class="good">&gt;40 минералов</td><td class="bad">Под вопросом</td></tr>
+          <tr><td>Соответствие сан. нормам</td><td class="good">Сан-эпид. экспертиза</td><td class="bad">На совести производителя</td></tr>
+          <tr><td>Микроорганизмы</td><td class="good">Не размножаются</td><td class="bad">Требует доочистки</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- WATER RULES -->
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">Инструкция</span>
+      <h2>Какую воду использовать</h2>
+      <p>Засыпка «ЭкоЛид» обогащает уже очищенную воду — важно заливать правильную основу.</p>
+    </div>
+    <div class="rules">
+      <div class="rule-card ok reveal">
+        <h3><span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg></span>Рекомендуется</h3>
+        <ul>
+          <li>Очищенная бутилированная вода</li>
+          <li>Очищенная фильтрованная вода</li>
+          <li>Вода после обратноосмотической установки</li>
+        </ul>
+        <p style="color:var(--muted2);font-size:14px;margin-top:16px">Очищена от механических примесей и микроорганизмов.</p>
+      </div>
+      <div class="rule-card no reveal d1">
+        <h3><span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg></span>Запрещается</h3>
+        <ul>
+          <li>Водопроводная нефильтрованная вода</li>
+          <li>Вода из колодцев и источников</li>
+        </ul>
+        <p style="color:var(--muted2);font-size:14px;margin-top:16px">Нуждается в предварительной очистке от примесей и микроорганизмов.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ECONOMY -->
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">Очевидная выгода</span>
+      <h2>Стоимость 1 литра живой воды</h2>
+    </div>
+    <div class="economy">
+      <div class="eco-card reveal"><div class="big">0,05 €</div><div class="lbl">за литр при покупке ионизатора с засыпкой</div></div>
+      <div class="eco-card reveal d1"><div class="big">0,02 €</div><div class="lbl">за литр при последующей замене засыпки</div></div>
+      <div class="eco-card reveal d2"><div class="big">2000 л</div><div class="lbl">ресурс работы одной засыпки</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT / ORDER SPEC -->
+<section class="sec" id="product">
+  <div class="aura" style="width:560px;height:560px;background:#0f766e;bottom:-160px;left:-160px;opacity:.32"></div>
+  <div class="wrap">
+    <div class="product">
+      <div class="product-visual reveal">
+        <div class="glow-disc"></div>
+        <img src="assets/bottle_black.png" class="pb" alt="ЭкоЛид чёрная">
+        <img src="assets/bottle_green.png" class="pg" alt="ЭкоЛид зелёная">
+        <img src="assets/cartridge.png" class="pc" alt="Керамическая засыпка">
+      </div>
+      <div>
+        <div class="sec-head reveal" style="margin-bottom:10px">
+          <span class="eyebrow">Каталог</span>
+          <h2>Ионизатор воды <span class="grad-text">«ЭкоЛид»</span></h2>
+        </div>
+        <p class="reveal d1" style="color:var(--muted)">Спорт · прогулки · путешествия · авто · офис · школа. ORP −250 mV / pH 9–11 ед.</p>
+
+        <div class="colors reveal d1">
+          <div class="swatch active" style="background:#0e3b34" title="Изумрудный"></div>
+          <div class="swatch" style="background:#1a1a1a" title="Чёрный"></div>
+        </div>
+
+        <ul class="spec-list reveal d2">
+          <li><span>Объём</span><span>650 мл</span></li>
+          <li><span>Размер</span><span>250 × 90 мм (H × D)</span></li>
+          <li><span>Вес</span><span>325 г (с засыпкой)</span></li>
+          <li><span>Материал</span><span>PP + PC, PC Tritan AS</span></li>
+          <li><span>Температура</span><span>−20…+120 °C</span></li>
+          <li><span>Засыпка</span><span>керамические шарики, 75 г</span></li>
+          <li><span>Ресурс засыпки</span><span>1500–2000 литров</span></li>
+        </ul>
+
+        <div class="price reveal d2">
+          <span class="now">79,00 €</span>
+          <span class="note">с засыпкой в комплекте</span>
+        </div>
+
+        <div class="hero-cta reveal d3">
+          <a href="#order" class="btn btn-primary">Оформить заказ</a>
+          <a href="#order" class="btn btn-ghost">Консультация</a>
+        </div>
+
+        <div class="certs reveal d3">
+          <span class="cert">CE / EU</span><span class="cert">CIQ</span><span class="cert">EEC</span><span class="cert">FDA</span><span class="cert">LFGB</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="trust">
+      <div class="counter reveal"><b data-count="12" data-suffix="+">0</b><span>лет в аквамедицине и БРТ</span></div>
+      <div class="counter reveal d1"><b data-count="10000" data-suffix="+">0</b><span>довольных клиентов</span></div>
+      <div class="counter reveal d2"><b data-count="40" data-suffix="+">0</b><span>минералов в воде</span></div>
+      <div class="counter reveal d3"><b data-count="2000" data-suffix=" л">0</b><span>ресурс засыпки</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- STEPS -->
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">Как мы работаем</span>
+      <h2>Заказ в 4 шага</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="n"></div><h4>Оформление</h4><p>Оставляете заявку на сайте или по телефону.</p></div>
+      <div class="step reveal d1"><div class="n"></div><h4>Подтверждение</h4><p>Менеджер связывается с вами для подтверждения.</p></div>
+      <div class="step reveal d2"><div class="n"></div><h4>Оплата</h4><p>Картой, на расчётный счёт или наложенным платежом.</p></div>
+      <div class="step reveal d3"><div class="n"></div><h4>Доставка</h4><p>Получаете заказ в течение 1–2 дней.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ORDER FORM -->
+<section class="sec" id="order" style="padding-top:0">
+  <div class="wrap">
+    <div class="order-box reveal">
+      <div>
+        <span class="eyebrow">Заказать</span>
+        <h2 style="font-size:clamp(28px,3.4vw,40px);margin:18px 0 14px">Получите живую воду <span class="grad-text">уже завтра</span></h2>
+        <p style="color:var(--muted);font-size:16px">Оставьте контакты — менеджер перезвонит, подтвердит заказ и ответит на все вопросы. Доставка 1–2 дня.</p>
+        <div class="price" style="margin-top:24px"><span class="now">79,00 €</span><span class="note">ионизатор + засыпка</span></div>
+      </div>
+      <form onsubmit="return submitOrder(event)">
+        <div class="form-field"><label>Имя *</label><input required type="text" placeholder="Как к вам обращаться"></div>
+        <div class="form-field"><label>Телефон *</label><input required type="tel" placeholder="+38 (0__) ___ __ __"></div>
+        <div class="form-field"><label>Цвет</label>
+          <select><option>Изумрудный</option><option>Чёрный</option></select>
+        </div>
+        <button class="btn btn-primary" style="width:100%" type="submit">Заказать за 79 €</button>
+        <p class="form-note">Нажимая кнопку, вы соглашаетесь на обработку данных.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="#top" class="logo" style="margin-bottom:18px"><span class="drop"></span>ЭкоЛид</a>
+        <p>Ионизатор воды с керамической засыпкой. Живая щёлочная вода ORP −250 mV / pH 9–11 везде, где бы вы ни были.</p>
+        <p>© 2018–2026 bottle.impermaster.info</p>
+      </div>
+      <div>
+        <h4>Контакты</h4>
+        <a href="tel:+380965207948">+38 (096) 520 79 48</a>
+        <a href="tel:+380665622177">+38 (066) 562 21 77</a>
+        <a href="mailto:impermaster.company@gmail.com">impermaster.company@gmail.com</a>
+        <p>г. Харьков, ул. Державинская 38</p>
+      </div>
+      <div>
+        <h4>Режим работы</h4>
+        <p>Пн–Пт: 9:00–17:00</p>
+        <p>Сб–Вс: выходной</p>
+        <a href="#order">Получить консультацию →</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>Аквамедицина · БРТ-технологии · 12 лет на рынке</span>
+      <span>Сертификаты: CE / EU · CIQ · EEC · FDA · LFGB</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// nav scroll state
+const hdr=document.getElementById('hdr');
+addEventListener('scroll',()=>hdr.classList.toggle('scrolled',scrollY>40));
+
+// mobile menu
+const burger=document.getElementById('burger'),mmenu=document.getElementById('mmenu');
+burger.addEventListener('click',()=>mmenu.classList.toggle('open'));
+mmenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mmenu.classList.remove('open')));
+
+// reveal on scroll
+const io=new IntersectionObserver((es)=>{
+  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+},{threshold:.14});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// count-up
+function animateCount(el){
+  const target=+el.dataset.count,suffix=el.dataset.suffix||'',dur=1600,start=performance.now();
+  function tick(now){
+    const p=Math.min((now-start)/dur,1),eased=1-Math.pow(1-p,3);
+    let val=Math.floor(eased*target);
+    el.textContent=val.toLocaleString('ru-RU')+suffix;
+    if(p<1)requestAnimationFrame(tick);else el.textContent=target.toLocaleString('ru-RU')+suffix;
+  }
+  requestAnimationFrame(tick);
+}
+const cio=new IntersectionObserver((es)=>{
+  es.forEach(e=>{if(e.isIntersecting){cio.unobserve(e.target);animateCount(e.target)}});
+},{threshold:.5});
+// safety net: if the tab was backgrounded, snap counters to final value on load-complete
+addEventListener('load',()=>setTimeout(()=>{
+  document.querySelectorAll('[data-count]').forEach(el=>{
+    const inView=el.getBoundingClientRect().top<innerHeight&&el.getBoundingClientRect().bottom>0;
+    if(inView&&el.textContent==='0')animateCount(el);
+  });
+},400));
+document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
+
+// bubbles
+const bc=document.getElementById('bubbles');
+for(let i=0;i<18;i++){
+  const b=document.createElement('div');b.className='bubble';
+  const s=6+Math.random()*22;
+  b.style.width=s+'px';b.style.height=s+'px';
+  b.style.left=Math.random()*100+'%';
+  b.style.animationDuration=(7+Math.random()*10)+'s';
+  b.style.animationDelay=(Math.random()*8)+'s';
+  bc.appendChild(b);
+}
+
+// swatches
+document.querySelectorAll('.swatch').forEach(s=>{
+  s.addEventListener('click',()=>{
+    document.querySelectorAll('.swatch').forEach(x=>x.classList.remove('active'));
+    s.classList.add('active');
+  });
+});
+
+function submitOrder(e){
+  e.preventDefault();
+  const btn=e.target.querySelector('button');
+  btn.textContent='✓ Заявка принята!';
+  btn.style.background='linear-gradient(135deg,#5eead4,#14b8a6)';
+  setTimeout(()=>{e.target.reset();btn.textContent='Заказать за 79 €';btn.style.background='';},2600);
+  return false;
+}
+</script>
+</body>
+</html>
