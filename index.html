@@ -266,6 +266,10 @@ table.cmp tr:last-child td{border-bottom:none}
 .form-field input::placeholder{color:#7fb3a9}
 .form-field input:focus,.form-field select:focus{outline:none;border-color:var(--mint);background:rgba(255,255,255,.12)}
 .form-field select option{background:#06231e}
+.form-consent{display:flex;gap:10px;align-items:flex-start;margin:4px 0 16px;cursor:pointer}
+.form-consent input{width:18px;height:18px;flex:none;margin-top:2px;accent-color:var(--mint);cursor:pointer}
+.form-consent span{font-size:12.5px;color:#9fd1c8;line-height:1.45}
+.form-consent a{color:var(--mint);text-decoration:underline}
 .form-note{font-size:13px;color:#8fc4ba;margin-top:12px;text-align:center}
 
 /* footer */
@@ -275,7 +279,22 @@ footer{background:#06231e;color:#bfe9e0;padding:66px 0 36px}
 .foot-grid p,.foot-grid a{color:#9fc7bf;font-size:15px;display:block;margin-bottom:10px;transition:.2s}
 .foot-grid a:hover{color:var(--mint)}
 .foot-grid .logo{color:#fff;margin-bottom:16px}
+.disclaimer{border-top:1px solid rgba(255,255,255,.1);padding-top:22px;margin-bottom:18px;color:#6f978f;font-size:12.5px;line-height:1.6;max-width:900px}
 .foot-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;color:#7fa79f;font-size:14px}
+/* cookie banner */
+.cookie{position:fixed;left:20px;right:20px;bottom:20px;z-index:200;max-width:520px;margin:0 auto;background:#06231e;color:#dff3ee;
+  border:1px solid rgba(94,234,212,.25);border-radius:20px;padding:22px 24px;box-shadow:0 30px 70px -20px rgba(0,0,0,.6);display:none}
+.cookie.show{display:block;animation:cookieIn .5s cubic-bezier(.2,.8,.2,1)}
+@keyframes cookieIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.cookie h4{font-family:'Unbounded';font-size:16px;margin-bottom:8px;color:#fff}
+.cookie p{font-size:13.5px;color:#a7d3cb;line-height:1.5;margin-bottom:16px}
+.cookie p a{color:var(--mint);text-decoration:underline}
+.cookie-btns{display:flex;gap:10px;flex-wrap:wrap}
+.cookie-btns button{flex:1;min-width:130px;padding:12px 16px;border-radius:100px;font-family:'Manrope';font-weight:700;font-size:14px;cursor:pointer;border:none;transition:.25s}
+.cookie-accept{background:var(--grad);color:#fff}
+.cookie-accept:hover{transform:translateY(-2px)}
+.cookie-decline{background:rgba(255,255,255,.08);color:#dff3ee;border:1px solid rgba(255,255,255,.15)}
+.cookie-decline:hover{background:rgba(255,255,255,.14)}
 
 /* reveal */
 .reveal{opacity:0;transform:translateY(38px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
@@ -342,7 +361,7 @@ footer{background:#06231e;color:#bfe9e0;padding:66px 0 36px}
       <div>
         <span class="eyebrow reveal">Аквамедицина · БРТ-технологии · 12 лет</span>
         <h1 class="reveal d1">Живая вода <span class="grad-text">в одной бутылке</span></h1>
-        <p class="sub reveal d2">Ионизатор «ЭкоЛид» с керамической засыпкой за считанные минуты превращает обычную очищенную воду в щёлочную «живую» — биологически активную и оптимально полезную для организма.</p>
+        <p class="sub reveal d2">Ионизатор «ЭкоЛид» с керамической засыпкой за считанные минуты превращает обычную очищенную воду в щёлочную «живую» — мягкую, лёгкую и приятную на вкус.</p>
         <div class="hero-cta reveal d3">
           <a href="#order" class="btn btn-primary">Заказать за 79 €</a>
           <a href="#pillars" class="btn btn-ghost">Как это работает</a>
@@ -391,7 +410,7 @@ footer{background:#06231e;color:#bfe9e0;padding:66px 0 36px}
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M13 2 3 14h7l-1 8 10-12h-7z"/></svg></div>
         <h3>Ионизация</h3>
         <div class="val">ORP −250…−500 mV</div>
-        <p>Восстанавливает окислительно-восстановительный потенциал воды. Меняет заряд с положительного на отрицательный — вода становится биологически активной, как жидкости здорового организма.</p>
+        <p>Восстанавливает окислительно-восстановительный потенциал воды. Меняет заряд с положительного на отрицательный — вода приобретает антиоксидантные свойства, как в природных горных источниках.</p>
       </div>
       <div class="pillar reveal d1">
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 2v20M2 12h20M5 5l14 14M19 5 5 19"/></svg></div>
@@ -403,7 +422,7 @@ footer{background:#06231e;color:#bfe9e0;padding:66px 0 36px}
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 3c4 5 6 8 6 11a6 6 0 0 1-12 0c0-3 2-6 6-11z"/></svg></div>
         <h3>Ощелачивание</h3>
         <div class="val">pH 9–11 ед.</div>
-        <p>Щёлочная вода нейтрализует повышенную кислотность организма, выводит токсины и радионуклиды, оказывает мощное антиоксидантное действие.</p>
+        <p>Мягкая щёлочная вода с приятным сбалансированным вкусом — комфортна для ежедневного питья дома, в спорте и в дороге.</p>
       </div>
     </div>
   </div>
@@ -415,7 +434,7 @@ footer{background:#06231e;color:#bfe9e0;padding:66px 0 36px}
     <div class="sec-head center reveal">
       <span class="eyebrow">«Живая» вода</span>
       <h2>Отрицательный ОВП = сила антиоксиданта</h2>
-      <p>ОВП — способность воды отдавать электроны во всех жидкостных средах организма. У здорового человека он от −7 до −200 mV.</p>
+      <p>ОВП — показатель способности воды отдавать электроны. Чем он ниже (отрицательнее), тем более выражены антиоксидантные свойства самой воды.</p>
     </div>
     <div class="compare2">
       <div class="water-card live reveal">
@@ -423,10 +442,10 @@ footer{background:#06231e;color:#bfe9e0;padding:66px 0 36px}
         <h3>Восстановитель</h3>
         <div class="orp">ОВП «−»</div>
         <ul>
-          <li>Заряд со знаком «минус» — идеальный антиоксидант</li>
-          <li>pH 9–11 ед., мгновенно усваивается и обводняет клетку</li>
+          <li>Заряд со знаком «минус» — антиоксидантные свойства</li>
+          <li>pH 9–11 ед., мягкий и приятный вкус</li>
           <li>Типична для горных источников и талой воды</li>
-          <li>Нормализует окислительно-восстановительный баланс</li>
+          <li>Свежая, лёгкая, хочется пить больше</li>
         </ul>
       </div>
       <div class="water-card dead reveal d1">
@@ -437,7 +456,7 @@ footer{background:#06231e;color:#bfe9e0;padding:66px 0 36px}
           <li>Заряд со знаком «плюс» — вода-окислитель</li>
           <li>pH 6–7,5 ед.</li>
           <li>Обычная бутилированная и водопроводная вода</li>
-          <li>Забирает электроны у клеток организма</li>
+          <li>Нейтральный вкус, без антиоксидантных свойств</li>
         </ul>
       </div>
     </div>
@@ -448,19 +467,19 @@ footer{background:#06231e;color:#bfe9e0;padding:66px 0 36px}
 <section class="sec">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">Влияние на организм</span>
-      <h2>Что даёт вода <span class="grad-text">с отрицательным ОВП</span></h2>
-      <p>За счёт восстановительных свойств вода нормализует баланс в организме и тем самым:</p>
+      <span class="eyebrow">Каждый день</span>
+      <h2>Вода, которую хочется <span class="grad-text">пить каждый день</span></h2>
+      <p>Мягкая, лёгкая, с приятным вкусом — привычка пить больше чистой воды, которая радует.</p>
     </div>
     <div class="benefits">
-      <div class="benefit reveal"><div class="bi"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M13 2 3 14h7l-1 8 10-12h-7z"/></svg></div><h4>Энергия и бодрость</h4><p>Восстанавливает энергетический баланс и придаёт бодрость.</p></div>
-      <div class="benefit reveal d1"><div class="bi"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 21s-7-4.5-9-9a5 5 0 0 1 9-2 5 5 0 0 1 9 2c-2 4.5-9 9-9 9z"/></svg></div><h4>Давление в норме</h4><p>Нормализует кровяное давление и обмен веществ.</p></div>
-      <div class="benefit reveal d2"><div class="bi"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 3a9 9 0 1 0 9 9M12 3v9l6 3"/></svg></div><h4>Иммунитет</h4><p>Восстанавливает и активизирует иммунную систему.</p></div>
-      <div class="benefit reveal d3"><div class="bi"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 22c5-3 8-7 8-12V5l-8-3-8 3v5c0 5 3 9 8 12z"/></svg></div><h4>Антиоксидант</h4><p>Мощные антиоксидантные и антимутагенные свойства.</p></div>
-      <div class="benefit reveal"><div class="bi"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M8 11a4 4 0 1 1 8 0c0 3-4 6-4 6s-4-3-4-6z"/><circle cx="12" cy="11" r="1.3"/></svg></div><h4>ЖКТ и микрофлора</h4><p>Нормализует микрофлору, стимулирует рост бифидобактерий.</p></div>
-      <div class="benefit reveal d1"><div class="bi"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M4 12h4l2 5 4-10 2 5h4"/></svg></div><h4>Заживление</h4><p>Способствует заживлению ран, ожогов и язв.</p></div>
-      <div class="benefit reveal d2"><div class="bi"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 3c3 4 5 7 5 10a5 5 0 0 1-10 0c0-3 2-6 5-10z"/></svg></div><h4>Детокс печени</h4><p>Восстанавливает детоксицирующую функцию печени.</p></div>
-      <div class="benefit reveal d3"><div class="bi"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg></div><h4>Противовирусное</h4><p>Подавляет патогенную флору, вирусы герпеса и гриппа «А».</p></div>
+      <div class="benefit reveal"><div class="bi"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M13 2 3 14h7l-1 8 10-12h-7z"/></svg></div><h4>Бодрость</h4><p>Заряжает энергией и хорошим настроением на весь день.</p></div>
+      <div class="benefit reveal d1"><div class="bi"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 3c4 5 6 8 6 11a6 6 0 0 1-12 0c0-3 2-6 6-11z"/></svg></div><h4>Лёгкость</h4><p>Ощущение лёгкости и комфорта после каждого глотка.</p></div>
+      <div class="benefit reveal d2"><div class="bi"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 22c5-3 8-7 8-12V5l-8-3-8 3v5c0 5 3 9 8 12z"/></svg></div><h4>Тонус</h4><p>Помогает оставаться в тонусе и форме в течение дня.</p></div>
+      <div class="benefit reveal d3"><div class="bi"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M13 2 3 14h7l-1 8 10-12h-7z"/></svg></div><h4>«Живая» вода</h4><p>Антиоксидантные свойства воды с отрицательным ОВП.</p></div>
+      <div class="benefit reveal"><div class="bi"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 3c4 4 7 7 7 11a7 7 0 0 1-14 0c0-4 3-7 7-11z"/></svg></div><h4>Мягкий вкус</h4><p>Чистый, мягкий и приятный вкус воды без привкуса.</p></div>
+      <div class="benefit reveal d1"><div class="bi"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 3v18M5 10l7-7 7 7"/></svg></div><h4>Гидратация</h4><p>С такой водой хочется пить больше — и это приятно.</p></div>
+      <div class="benefit reveal d2"><div class="bi"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 2v20M2 12h20M5 5l14 14M19 5 5 19"/></svg></div><h4>Минералы</h4><p>Обогащена природными минералами и микроэлементами.</p></div>
+      <div class="benefit reveal d3"><div class="bi"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 21s-7-4.5-9-9a5 5 0 0 1 9-2 5 5 0 0 1 9 2c-2 4.5-9 9-9 9z"/></svg></div><h4>Забота о себе</h4><p>Полезная привычка и маленькая ежедневная забота о себе.</p></div>
     </div>
   </div>
 </section>
@@ -641,10 +660,11 @@ footer{background:#06231e;color:#bfe9e0;padding:66px 0 36px}
         </div>
         <form onsubmit="return submitOrder(event)">
           <div class="form-field"><label>Имя *</label><input required type="text" placeholder="Как к вам обращаться"></div>
-          <div class="form-field"><label>Телефон *</label><input required type="tel" placeholder="+38 (0__) ___ __ __"></div>
+          <div class="form-field"><label>Телефон *</label><input required type="tel" placeholder="+__ ___ ___ ____"></div>
           <div class="form-field"><label>Цвет</label><select><option>Изумрудный</option><option>Чёрный</option></select></div>
+          <label class="form-consent"><input type="checkbox" required><span>Я согласен(а) на обработку персональных данных для оформления заказа и ознакомлен(а) с <a href="privacy.html" target="_blank" rel="noopener">Политикой конфиденциальности</a>.</span></label>
           <button class="btn btn-primary" style="width:100%;background:#fff;color:var(--teal-d)" type="submit">Заказать за 79 €</button>
-          <p class="form-note">Нажимая кнопку, вы соглашаетесь на обработку данных.</p>
+          <p class="form-note">Мы свяжемся с вами для подтверждения заказа. Спам не рассылаем.</p>
         </form>
       </div>
     </div>
@@ -668,18 +688,49 @@ footer{background:#06231e;color:#bfe9e0;padding:66px 0 36px}
         <p>г. Харьков, ул. Державинская 38</p>
       </div>
       <div>
-        <h4>Режим работы</h4>
-        <p>Пн–Пт: 9:00–17:00</p>
-        <p>Сб–Вс: выходной</p>
+        <h4>Документы</h4>
+        <a href="privacy.html">Политика конфиденциальности</a>
+        <a href="impressum.html">Impressum / Реквизиты</a>
+        <a href="#" onclick="openCookiePrefs();return false;">Настройки cookie</a>
         <a href="#order">Получить консультацию →</a>
       </div>
     </div>
+    <p class="disclaimer">«ЭкоЛид» — бытовой товар для приготовления питьевой воды. Не является медицинским изделием и не предназначен для диагностики, лечения или профилактики заболеваний. Приведённые характеристики относятся к свойствам воды и не являются медицинскими рекомендациями.</p>
     <div class="foot-bottom">
       <span>Аквамедицина · БРТ-технологии · 12 лет на рынке</span>
-      <span>Сертификаты: CE / EU · CIQ · EEC · FDA · LFGB</span>
+      <span>Сертификаты качества: CE · CIQ · EEC · LFGB</span>
     </div>
   </div>
 </footer>
+
+<!-- COOKIE CONSENT -->
+<div class="cookie" id="cookie">
+  <h4>Мы используем cookie 🍪</h4>
+  <p>Необходимые cookie обеспечивают работу сайта. Аналитические и маркетинговые (в т.ч. Meta и TikTok) подключаются только с вашего согласия. Подробнее — в <a href="privacy.html" target="_blank" rel="noopener">Политике конфиденциальности</a>.</p>
+  <div class="cookie-btns">
+    <button class="cookie-accept" onclick="cookieChoice('all')">Принять все</button>
+    <button class="cookie-decline" onclick="cookieChoice('essential')">Только необходимые</button>
+  </div>
+</div>
+
+<script>
+// --- GDPR cookie consent ---
+function loadTrackers(){
+  // Пиксели подключаются ТОЛЬКО после согласия 'all'. Вставь сюда код Meta Pixel и TikTok Pixel.
+  // Пример: (function(){ /* Meta Pixel init */ })(); (function(){ /* TikTok Pixel init */ })();
+}
+function cookieChoice(v){
+  try{localStorage.setItem('ecolid_cookie',v);}catch(e){}
+  document.getElementById('cookie').classList.remove('show');
+  if(v==='all')loadTrackers();
+}
+function openCookiePrefs(){document.getElementById('cookie').classList.add('show');}
+(function(){
+  var c;try{c=localStorage.getItem('ecolid_cookie');}catch(e){}
+  if(!c)document.getElementById('cookie').classList.add('show');
+  else if(c==='all')loadTrackers();
+})();
+</script>
 
 <script>
 const hdr=document.getElementById('hdr');
